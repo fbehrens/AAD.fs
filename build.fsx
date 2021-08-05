@@ -41,7 +41,7 @@ module Shell =
         |> CreateProcess.ensureExitCode
         |> CreateProcess.map parse
         |> Proc.run
-    let inline az arg = sh "az" arg
+    let inline az arg = sh @"\Program Files (x86)\Microsoft SDKs\Azure\CLI2\python.exe" $"-IBm azure.cli {arg}"
     let aza args cwd parse =
         async { return az args cwd parse }
     let parsePlain r = String.trimChars [|' '; '\n'|] r.Result.Output
